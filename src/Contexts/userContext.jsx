@@ -23,7 +23,7 @@ export const UserProvider = ({ children }) => {
   },[]);
   const logUserOut = async () => {
     try {
-      await axios.get('/api/logout', { withCredentials: true });
+      await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/logout`, { withCredentials: true });
       
       setUser({teamName: '',email: '',member_count:1,level:1,loggedIn:false});
 
