@@ -59,20 +59,20 @@ const Banner = () => {
       fetchTimings()
   },[]);
 
-    useEffect(() => {
-      socket.on("competitionTimingsUpdated", (data) => {
-            const formattedDate = `${data.competitionDate}T${data.startTime}`;
+//     useEffect(() => {
+//       socket.on("competitionTimingsUpdated", (data) => {
+//             const formattedDate = `${data.competitionDate}T${data.startTime}`;
   
-          setCompetitionDetails({
-              ...data,
-              competitionDate: formattedDate
-          });
-      });
+//           setCompetitionDetails({
+//               ...data,
+//               competitionDate: formattedDate
+//           });
+//       });
   
-      return () => {
-          socket.off("competitionTimingsUpdated");
-      };
-  }, []);
+//       return () => {
+//           socket.off("competitionTimingsUpdated");
+//       };
+//   }, []);
   
 
     useEffect(() => {
