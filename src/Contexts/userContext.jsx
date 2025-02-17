@@ -12,7 +12,7 @@ export const UserProvider = ({ children }) => {
   
   useEffect(() => {
     if(!socket){
-      socket = io('https://backend-nur7ybavd-do25-ops-projects.vercel.app', { withCredentials: true });
+      socket = io('https://backend-theta-two-99.vercel.app/', { withCredentials: true });
     }
     
     return ()=>{

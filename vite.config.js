@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://backend-nur7ybavd-do25-ops-projects.vercel.app',
+        target: 'https://backend-theta-two-99.vercel.app/',
         //rewrite: (path) => path.replace(/^\/api/, ''), 
       },
     },
