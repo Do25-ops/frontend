@@ -27,7 +27,7 @@ const SubmissionWindow = ({ query,dialect, toggleWindow,toggledSelected, setCanS
       const response = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/api/getSubmissionStatus`,
         {
-          params: { team_id: user.team_id, query: query }, // Fix query param
+          params: { team_id: user.team_id, query: query }, 
         }
       );
   
@@ -35,16 +35,16 @@ const SubmissionWindow = ({ query,dialect, toggleWindow,toggledSelected, setCanS
         statusChanger(response.data.queryStatus);
       }
     } catch (err) {
-      console.error("Error fetching status:", err);
     }
   };
   
   useEffect(() => {
-    fetchStatus();
-  
+    if (status === "accepted" || status === "rejected") return; 
+
+    fetchStatus();  
     const interval = setInterval(() => {
       fetchStatus();
-    }, 3000); // Poll every 3 seconds
+    }, 3000); 
   
     return () => clearInterval(interval);
   }, [user.team_id, query]); // Only trigger when team_id or query changes

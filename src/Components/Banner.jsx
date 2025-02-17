@@ -57,6 +57,11 @@ const Banner = () => {
          }
       }
       fetchTimings()
+      const interval = setInterval(() => {
+        fetchTimings();
+      }, 30000); 
+    
+      return () => clearInterval(interval);
   },[]);
 
 //     useEffect(() => {
