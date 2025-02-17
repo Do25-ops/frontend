@@ -7,7 +7,7 @@ let socket;
 
 export const UserProvider = ({ children }) => {
     
-  const [user, setUser] = useState({teamName: '',email: '',member_count:1,level:1,team_id: 0,loggedIn:false});
+  const [user, setUser] = useState({teamName: '',email: '',member_count:1,level:1,team_id: 0,loggedIn:false,just_logged_out : false});
 
   
   useEffect(() => {
@@ -25,7 +25,7 @@ export const UserProvider = ({ children }) => {
     try {
       await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/logout`, { withCredentials: true });
       
-      setUser({teamName: '',email: '',member_count:1,level:1,loggedIn:false});
+      setUser({teamName: '',email: '',member_count:1,level:1,loggedIn:false,just_logged_out:true});
 
     } catch (err) {
       alert('Error logging out: ' + err.message);

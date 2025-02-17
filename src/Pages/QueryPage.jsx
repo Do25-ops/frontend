@@ -34,6 +34,7 @@ const OraclePopup = ({ message, onClose }) => {
 
 
 const QueryPage = () => {
+  const [isLoading,setLoading] = useState(true);
   const [selectedDialect, setSelectedDialect] = useState("mysql");
   const [competitionDetails, setCompetitionDetails] = useState({
           competitionName: "",
@@ -67,6 +68,7 @@ const QueryPage = () => {
     }
     fetchTimings()
 },[]);
+
 
 useEffect(() => {
   if (!competitionDetails.endTime || !competitionDetails.competitionDate) return;
@@ -475,9 +477,12 @@ Kindly note the differences in schema for Oracle:
   }, []);
 
   useEffect(() => {
-    if (!user.loggedIn) navigate("/");
+    if (user && !user.loggedIn) navigate("/");
+    else if(!user) setLoading(true);
     else {
+      console.log('sending request to fetch queriess');
       fetchQueries();
+      setLoading(false);
     }
   }, [user, user.loggedIn]);
 
