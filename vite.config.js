@@ -7,7 +7,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         target: 'https://backend-nur7ybavd-do25-ops-projects.vercel.app',
-        rewrite: (path) => path.replace(/^\/api/, ''), 
+        //rewrite: (path) => path.replace(/^\/api/, ''), 
       },
     },
   },
