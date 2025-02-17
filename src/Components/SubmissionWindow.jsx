@@ -8,39 +8,47 @@ const SubmissionWindow = ({ query,dialect, toggleWindow,toggledSelected, setCanS
   const [status,setStatus] = useState('submitting');
   const {user} = useUserContext();
 
-  const statusChanger =  (queryStatus) => {
-    if(queryStatus.email === user.email && queryStatus.status !== status){
-      setStatus(prev => queryStatus.status);
-      if(queryStatus.status === 'accepted') toggledSelected()
-      else if (queryStatus.status === 'rejected') setCanSubmit(true);
-    }
-  }
-  const fetchStatus = async(e) => {
-    try{
-        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getSubmissionStatus`,{
-          params : {team_id : user.team_id ,query : query}
-        });
-        statusChanger(response.queryStatus);
-    }
-    catch(err){
-console.log('Error fetching status ',err);
+  const statusChanger = (queryStatus) => {
+    if (!queryStatus) return;
+  
+    if (queryStatus.email === user.email && queryStatus.status !== status) {
+      setStatus(queryStatus.status);
+      
+      if (queryStatus.status === "accepted") {
+        toggledSelected();
+      } else if (queryStatus.status === "rejected") {
+        setCanSubmit(true);
+      }
     }
   };
-
-  // useEffect(()=>{
-  //   //socket.on('fileStatusUpdated',statusChanger)
-  //   
-  // },[])
-       
+  
+  const fetchStatus = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/getSubmissionStatus`,
+        {
+          params: { team_id: user.team_id, query: query }, // Fix query param
+        }
+      );
+  
+      if (response.data.queryStatus) {
+        statusChanger(response.data.queryStatus);
+      }
+    } catch (err) {
+      console.error("Error fetching status:", err);
+    }
+  };
+  
   useEffect(() => {
     fetchStatus();
-    
+  
     const interval = setInterval(() => {
-       fetchStatus();
-    }, 3000); 
-
+      fetchStatus();
+    }, 3000); // Poll every 3 seconds
+  
     return () => clearInterval(interval);
-  }, [user, query]);
+  }, [user.team_id, query]); // Only trigger when team_id or query changes
+  
   
   return (
     <div className="fixed top-0 right-0 h-screen w-80 bg-gray-900 border-l border-gray-800 shadow-xl overflow-y-auto">
