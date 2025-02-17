@@ -35,7 +35,7 @@ export const UserProvider = ({ children }) => {
   const logUserIn = async (formData) => {
     
     try{
-      const response = await axios.post('/api/login',JSON.stringify(formData),{headers:{ "Content-Type":"application/json"}, withCredentials:true})
+      const response = await axios.post('https://backend-theta-two-99.vercel.app/api/login',JSON.stringify(formData),{headers:{ "Content-Type":"application/json"}, withCredentials:true})
       setUser((prev) => ({
           ...response.data,
           loggedIn:true
