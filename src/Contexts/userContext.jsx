@@ -10,17 +10,17 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({teamName: '',email: '',member_count:1,level:1,team_id: 0,loggedIn:false,just_logged_out : false});
 
   
-  useEffect(() => {
-    if(user && !socket){
-      socket = io('https://backend-theta-two-99.vercel.app/', { withCredentials: true });
-    }
+  // useEffect(() => {
+  //   if(user && !socket){
+  //     socket = io('https://backend-theta-two-99.vercel.app/', { withCredentials: true });
+  //   }
     
-    return ()=>{
-      socket.disconnect();
-      socket = null;
-    }
+  //   return ()=>{
+  //     socket.disconnect();
+  //     socket = null;
+  //   }
      
-  },[]);
+  // },[]);
   const logUserOut = async () => {
     try {
       await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/logout`, { withCredentials: true });

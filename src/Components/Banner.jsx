@@ -16,17 +16,17 @@ const Banner = () => {
     const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
     const {user} = useUserContext();
     let socket;
-     useEffect(() => {
-        if(user && !socket){
-          socket = io('https://backend-theta-two-99.vercel.app/', { withCredentials: true });
-        }
+    //  useEffect(() => {
+    //     if(user && !socket){
+    //       socket = io('https://backend-theta-two-99.vercel.app/', { withCredentials: true });
+    //     }
         
-        return ()=>{
-          socket.disconnect();
-          socket = null;
-        }
+    //     return ()=>{
+    //       socket.disconnect();
+    //       socket = null;
+    //     }
          
-      },[]);
+    //   },[]);
 
     const formatTime = (timeString) => {
         const [hours, minutes] = timeString.split(':');

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { FiClock, FiFileText, FiFlag, FiAlertCircle } from 'react-icons/fi';
 import { useUserContext } from '../Contexts/userContext';
+import axios from 'axios';
 
 const SubmissionWindow = ({ query,dialect, toggleWindow,toggledSelected, setCanSubmit }) => {
 
   const [status,setStatus] = useState('submitting');
-  const {user,socket} = useUserContext();
+  const {user} = useUserContext();
 
   const statusChanger =  (queryStatus) => {
     if(queryStatus.email === user.email && queryStatus.status !== status){
@@ -14,12 +15,34 @@ const SubmissionWindow = ({ query,dialect, toggleWindow,toggledSelected, setCanS
       else if (queryStatus.status === 'rejected') setCanSubmit(true);
     }
   }
+  const fetchStatus = async(e) => {
+    try{
+        const response = axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getSubmissionStatus`,{
+          params : {team_id : user.team_id ,query : query}
+        });
+        statusChanger(response.queryStatus);
+    }
+    catch(err){
 
-  useEffect(()=>{
-    socket.on('fileStatusUpdated',statusChanger)
-  },[])
-        
-    return (
+    }
+  };
+
+  // useEffect(()=>{
+  //   //socket.on('fileStatusUpdated',statusChanger)
+  //   
+  // },[])
+       
+  useEffect(() => {
+    fetchStatus();
+    
+    const interval = setInterval(() => {
+       fetchStatus();
+    }, 3000); 
+
+    return () => clearInterval(interval);
+  }, [user, query]);
+  
+  return (
     <div className="fixed top-0 right-0 h-screen w-80 bg-gray-900 border-l border-gray-800 shadow-xl overflow-y-auto">
       <div className="p-6 border-b border-gray-800">
         <div className='flex flex-wrap-reverse justify-between'>
