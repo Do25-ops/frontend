@@ -30,7 +30,7 @@ const Login = () => {
     e.preventDefault();
     try{
         // const response = isLogin ? await axios.post('/api/login',formData) : await axios.post('/api/register',formData);
-        isLogin ? logUserIn(formData) : registerUser(formData);
+        isLogin ? logUserIn(formData) : undefined;
         if(!isLogin){
           setIsLogin(true);
         }
@@ -163,11 +163,11 @@ const Login = () => {
 
         <div className="text-center">
           <button
-            onClick={() => setIsLogin(!isLogin)}
+            // onClick={() => setIsLogin(!isLogin)}
             className="text-sm text-gray-400 hover:text-white transition-colors"
           >
             {isLogin 
-              ? "Don't have an account? Sign up" 
+              ? null
               : "Already have an account? Sign in"}
           </button>
         </div>
