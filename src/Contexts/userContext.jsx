@@ -11,7 +11,7 @@ export const UserProvider = ({ children }) => {
 
   
   useEffect(() => {
-    if(!socket){
+    if(user && !socket){
       socket = io('https://backend-theta-two-99.vercel.app/', { withCredentials: true });
     }
     

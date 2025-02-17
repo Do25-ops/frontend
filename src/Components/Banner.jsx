@@ -3,7 +3,7 @@ import { FiCalendar, FiClock, FiUsers, FiAward } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import axios from 'axios';
-const socket =  io('https://backend-theta-two-99.vercel.app/', { withCredentials: true });
+import { useUserContext } from '../Contexts/userContext';
 
 const Banner = () => {
     const navigate = useNavigate();
@@ -14,7 +14,20 @@ const Banner = () => {
         endTime: "12:00 PM"
     });
     const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-    
+    const {user} = useUserContext();
+    let socket;
+     useEffect(() => {
+        if(user && !socket){
+          socket = io('https://backend-theta-two-99.vercel.app/', { withCredentials: true });
+        }
+        
+        return ()=>{
+          socket.disconnect();
+          socket = null;
+        }
+         
+      },[]);
+
     const formatTime = (timeString) => {
         const [hours, minutes] = timeString.split(':');
         const h = parseInt(hours, 10);
