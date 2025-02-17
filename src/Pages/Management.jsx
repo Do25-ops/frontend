@@ -13,7 +13,7 @@ const Management = () => {
     useEffect(() => {
         const fetchTimings = async () => {
            try{
-              const response = await axios.get(`/api/getCompetitionTimings`);
+              const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getCompetitionTimings`);
            //   console.log('request response' ,response.data);
 
               setCompetitionName(response.data.competitionName);
@@ -31,7 +31,7 @@ const Management = () => {
     const handleSubmit = async(e) => {
         e.preventDefault();
         try{
-            const response =await axios.post(`/api/updateTimings`,{competitionName,competitionDate,startTime,endTime,secretKey});
+            const response =await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/updateTimings`,{competitionName,competitionDate,startTime,endTime,secretKey});
             if(!response.data.sucesss){
                 setError(response.data.message)
             }

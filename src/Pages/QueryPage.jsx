@@ -57,7 +57,7 @@ const QueryPage = () => {
   useEffect(() => {
     const fetchTimings = async () => {
        try{
-          const response = await axios.get(`/api/getCompetitionTimings`);
+          const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getCompetitionTimings`);
 
           setCompetitionDetails(response.data);
        }   
@@ -124,7 +124,7 @@ Kindly note the differences in schema for Oracle:
 
   const fetchQueries = async (e) => {
     axios
-      .get(`/api/queries/${user.level}.${user.team_id}`, {
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/queries/${user.level}.${user.team_id}`, {
         withCredentials: true,
         headers: { "Content-Type": "application/json" },
       })
@@ -413,7 +413,7 @@ Kindly note the differences in schema for Oracle:
       }
       console.log('sending request for selected query ',selectedQuery);
       const response = await axios.post(
-        "/api/submitFile",
+        `${import.meta.env.VITE_BACKEND_URL}/api/submitFile`,
         JSON.stringify({
           query: selectedQuery,
           email: user.email,

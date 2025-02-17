@@ -76,7 +76,7 @@ const App = () => {
   const currentPath = window.location.pathname; 
   useEffect(() => {
     if (!user.loggedIn && PUBLIC_PAGES.includes(currentPath)) return; 
-    axios.get("/api/check-session", { withCredentials: true })
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/check-session`, { withCredentials: true })
       .then(response => {
         setUser(prev => ({
           ...response.data,

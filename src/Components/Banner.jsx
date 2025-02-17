@@ -40,7 +40,7 @@ const Banner = () => {
     useEffect(() => {
       const fetchTimings = async () => {
          try{
-            const response = await axios.get(`/api/getCompetitionTimings`);
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getCompetitionTimings`);
             const data = response.data;
             const formattedDate = `${data.competitionDate.split('T')[0]}T${data.startTime}`;
             const formattedStart =formatTime(response.data.startTime);

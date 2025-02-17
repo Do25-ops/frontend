@@ -17,7 +17,7 @@ const LeaderBoard = () => {
   useEffect(() => {
     const fetchTimings = async () => {
       try {
-        const response = await axios.get(`/api/getCompetitionTimings`);
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getCompetitionTimings`);
         const data = response.data;
 
         const competitionDate = data.competitionDate.split("T")[0];
@@ -55,7 +55,7 @@ const LeaderBoard = () => {
 
   const fetchStats = () => {
     axios
-      .get("/api/leaderboardData", { withCredentials: true })
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/leaderboardData`, { withCredentials: true })
       .then((res) => {
         console.log(res.data, "in leaderboard");
         setLeaderBoardData(res.data.teamData);

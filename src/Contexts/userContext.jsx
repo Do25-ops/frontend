@@ -35,7 +35,7 @@ export const UserProvider = ({ children }) => {
   const logUserIn = async (formData) => {
     
     try{
-      const response = await axios.post('https://backend-theta-two-99.vercel.app/api/login',JSON.stringify(formData),{headers:{ "Content-Type":"application/json"}, withCredentials:true})
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/login`,JSON.stringify(formData),{headers:{ "Content-Type":"application/json"}, withCredentials:true})
       setUser((prev) => ({
           ...response.data,
           loggedIn:true
@@ -48,7 +48,7 @@ export const UserProvider = ({ children }) => {
   
   const registerUser = async (formData) => {
     try{
-      const response = await axios.post('/api/register',JSON.stringify(formData), { headers : { "Content-Type": "application/json"}});
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/register`,JSON.stringify(formData), { headers : { "Content-Type": "application/json"}});
       alert('Registeration successful, please log in ' + formData.username);
     }
     catch(err){

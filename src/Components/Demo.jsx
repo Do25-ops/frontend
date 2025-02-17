@@ -36,7 +36,7 @@ const Demo = ({ setDemo }) => {
     }, [currentLevel, userLevel])
 
     const handleSkip = () => {
-        axios.put('/api/tutoiralDone',user).catch(err => {
+        axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/tutoiralDone`,user).catch(err => {
             alert('failed to update the status');
         }).finally(()=>{
             setDemo(false);
