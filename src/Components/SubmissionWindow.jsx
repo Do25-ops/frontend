@@ -17,7 +17,7 @@ const SubmissionWindow = ({ query,dialect, toggleWindow,toggledSelected, setCanS
   }
   const fetchStatus = async(e) => {
     try{
-        const response = axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getSubmissionStatus`,{
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getSubmissionStatus`,{
           params : {team_id : user.team_id ,query : query}
         });
         statusChanger(response.queryStatus);
