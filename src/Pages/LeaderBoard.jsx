@@ -19,16 +19,14 @@ const LeaderBoard = () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getCompetitionTimings`);
         const data = response.data;
-
+        console.log('Competition response ',data);
         const competitionDate = data.competitionDate.split("T")[0];
 
-        // Calculate actual end time
         const endTime = new Date(
           `${competitionDate}T${data.endTime}`
         ).getTime();
         const currentTime = new Date().getTime();
 
-        // Calculate remaining time in seconds
         const remainingSeconds = Math.max((endTime - currentTime) / 1000, 0);
 
         setCompetitionDetails({
