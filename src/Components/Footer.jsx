@@ -65,9 +65,7 @@ const Footer = () => {
               © {new Date().getFullYear()} Data Odyssey. All rights reserved.
             </p>
             <div className="flex items-center gap-2">
-              <span className="text-gray-400 text-sm">Made with</span>
-              <FiHeart className="text-red-500" />
-              <span className="text-gray-400 text-sm">for ProCom'25</span>
+              <span className="text-gray-400 text-sm">Made for ProCom'25</span>
             </div>
           </div>
         </div>
