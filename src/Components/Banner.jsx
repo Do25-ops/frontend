@@ -3,7 +3,7 @@ import { FiCalendar, FiClock, FiUsers, FiAward } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import axios from 'axios';
-const socket = io("http://localhost:8800");
+const socket = io("https://backend-nur7ybavd-do25-ops-projects.vercel.app");
 
 const Banner = () => {
     const navigate = useNavigate();
