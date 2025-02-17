@@ -137,17 +137,7 @@ const Login = () => {
             </div>
           </div>
 
-          {isLogin && (
-            <div className="flex items-center justify-end">
-              <button
-                type="button"
-                className="text-sm text-red-600 hover:text-red-500"
-              >
-                Forgot your password?
-              </button>
-            </div>
-          )}
-
+         
           <div>
             <button
               type="submit"
