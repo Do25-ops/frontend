@@ -23,7 +23,7 @@ const SubmissionWindow = ({ query,dialect, toggleWindow,toggledSelected, setCanS
         statusChanger(response.queryStatus);
     }
     catch(err){
-
+console.log('Error fetching status ',err);
     }
   };
 
