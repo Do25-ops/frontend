@@ -119,7 +119,7 @@ Kindly note the differences in schema for Oracle:
 
  
   const levelChanger = (email,new_level) => {
-    console.log('Changing levell? ',email ,' ',new_level);
+//    console.log('Changing levell? ',email ,' ',new_level);
     if (email == user.email && new_level <=8) {
       setUser((prev) => ({ ...prev, level: new_level }));
       zoomToLevel(2.5, levels[new_level - 1].x, levels[new_level - 1].y);

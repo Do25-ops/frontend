@@ -16,7 +16,8 @@ const Dashboard = ({onClose}) => {
          );
          setSubmissions(response.data);
       }
-      catch(err){   console.log(err);
+      catch(err){   
+        // console.log(err);
       }
   }
  

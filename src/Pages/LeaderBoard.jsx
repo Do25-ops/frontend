@@ -32,7 +32,7 @@ const LeaderBoard = () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getCompetitionTimings`);
         const data = response.data;
-        console.log('Competition response ',data);
+   //     console.log('Competition response ',data);
         const competitionDate = data.competitionDate.split("T")[0];
 
         const endTime = new Date(
@@ -49,7 +49,7 @@ const LeaderBoard = () => {
 
         setTimeRemaining(remainingSeconds);
       } catch (err) {
-        console.error("Error fetching competition timings:", err);
+        //console.error("Error fetching competition timings:", err);
       }
     };
 
@@ -68,11 +68,11 @@ const LeaderBoard = () => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/api/leaderboardData`, { withCredentials: true })
       .then((res) => {
-        console.log(res.data, "in leaderboard");
+       // console.log(res.data, "in leaderboard");
         setLeaderBoardData(res.data.teamData);
       })
       .catch((err) => {
-        console.error(err.message);
+     //   console.error(err.message);
       });
   };
 
