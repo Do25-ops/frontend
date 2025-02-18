@@ -127,7 +127,12 @@ Kindly note the differences in schema for Oracle:
   
   const fetchLevel = async() =>{
     try{
-       const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/checkLevel/${user.team_id}`);
+       const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/checkLevel/${user.team_id}`
+        ,{
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
+        }
+       );
        if(response.level !== user.level){
           levelChanger(user.email,response.level);
        } 
