@@ -137,9 +137,9 @@ Kindly note the differences in schema for Oracle:
           headers: { "Content-Type": "application/json" },
         }
        );
-       if(response.date.level !== user.level){
-        console.log('changin level to ',response.data.level);
-          levelChanger(user.email,response.data.level);
+       if(response.data[0].level !== user.level){
+        console.log('changin level to ',response.data[0].level);
+          levelChanger(user.email,response.data[0].level);
        } 
     }
     catch(err){
