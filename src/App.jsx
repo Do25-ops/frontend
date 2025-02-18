@@ -73,20 +73,20 @@ const router = createBrowserRouter([
 const App = () => {
   const { user, setUser } = useUserContext();
   const currentPath = window.location.pathname; 
-  // useEffect(() => {
-  //   axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/check-session`, { withCredentials: true })
-  //     .then(response => {
-  //       if(response.data.restore){
-  //         setUser(prev => ({
-  //         ...response.data.userData,
-  //         loggedIn: true,
-  //       }));
-  //       }
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/check-session`, { withCredentials: true })
+      .then(response => {
+        if(response.data.restore){
+          setUser(prev => ({
+          ...response.data.userData,
+          loggedIn: true,
+        }));
+        }
   
-  //     })
-  //     .catch(err => {
-  //     });
-  // }, [currentPath]); 
+      })
+      .catch(err => {
+      });
+  }, [currentPath]); 
 
   return (
     <div className="min-h-screen w-full flex flex-col">

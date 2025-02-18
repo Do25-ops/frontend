@@ -215,15 +215,21 @@ const LeaderBoard = () => {
                           let bgColor = ""; // Default: Not Attempted
                           let textColor = "text-white";
                           let displayText = "";
-
                           if (levelStatus === "Passed") {
                             bgColor = "bg-purple-500/20";
                             textColor = "text-white font-semibold";
-                            displayText =
-                              levelNumber === team.lastLevelPassed
-                                ? new Date(team.lastPassedTime).toLocaleString("en-US", { timeZone: "America/New_York" })
-                                : "🚀";
-                          } else if (levelStatus === "Attempting") {
+                          
+                            // Convert lastPassedTime to local 24-hour format
+                            const today = new Date().toISOString().split("T")[0]; // Get today's date (YYYY-MM-DD)
+                            const lastPassedTime = `${today}T${team.lastPassedTime}`; // Combine with time
+                            
+                            const localTime = new Date(lastPassedTime).toLocaleTimeString("en-US", { 
+                              hour12: false 
+                            });
+                          
+                            displayText = levelNumber === team.lastLevelPassed ? localTime : "🚀";
+                          }
+                           else if (levelStatus === "Attempting") {
                             textColor = "text-black font-semibold";
                             displayText = (
                               <div className="flex items-center justify-center gap-2">
