@@ -128,7 +128,7 @@ Kindly note the differences in schema for Oracle:
       setShowPopup(true);
    }
   };
-  
+
   const fetchLevel = async() =>{
     try{
        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/fetchTeamLevel/${user.team_id}`
@@ -137,7 +137,8 @@ Kindly note the differences in schema for Oracle:
           headers: { "Content-Type": "application/json" },
         }
        );
-       if(response.level !== user.level){
+       if(response.date.level !== user.level){
+        console.log('changin level to ',response.data.level);
           levelChanger(user.email,response.data.level);
        } 
     }
