@@ -3,7 +3,7 @@ import { FiClock, FiFileText, FiFlag, FiAlertCircle } from 'react-icons/fi';
 import { useUserContext } from '../Contexts/userContext';
 import axios from 'axios';
 
-const SubmissionWindow = ({ query,dialect, toggleWindow,toggledSelected, setCanSubmit }) => {
+const SubmissionWindow = ({ query,dialect, toggleWindow,toggledSelected, setCanSubmit,levelChanger }) => {
 
   const [status,setStatus] = useState('submitting');
   const {user,setUser} = useUserContext();
@@ -14,10 +14,7 @@ const SubmissionWindow = ({ query,dialect, toggleWindow,toggledSelected, setCanS
     if (queryStatus.email === user.email && queryStatus.status !== status) {
       setStatus(queryStatus.status);
       if(queryStatus.level !== user.level){
-        setUser((prev) => ({
-          ...prev,
-          level : queryStatus.level,
-      }));
+        levelChanger(user.email,queryStatus.level);
       }
       if (queryStatus.status === "accepted") {
         toggledSelected();

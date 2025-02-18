@@ -5,6 +5,7 @@ import axios from "axios";
 
 const LeaderBoard = () => {
   const { user } = useUserContext();
+  const [hasStarted,setStarted] = useState(false);
   const [competitionDetails, setCompetitionDetails] = useState({
     competitionName: "Data Odyssey",
     competitionDate: "2025-02-19T09:00:00",
@@ -14,6 +15,18 @@ const LeaderBoard = () => {
 
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [leaderboardData, setLeaderBoardData] = useState([]);
+
+  useEffect(() => {
+    const currentTime = new Date().getTime();
+    const competitionStartTime = new Date(competitionDetails.competitionDate).getTime();
+
+    if (currentTime >= competitionStartTime) {
+        setStarted(true);
+    } else {
+        setStarted(false);
+    }
+}, []);
+
   useEffect(() => {
     const fetchTimings = async () => {
       try {
@@ -124,9 +137,9 @@ const LeaderBoard = () => {
             <div className="flex items-center gap-4">
               <FiClock className="text-red-500 text-3xl" />
               <div>
-                <p className="text-gray-400">Time Remaining</p>
+                <p className="text-gray-400">{hasStarted ? "Time Remaining" : "Competition Starts At "}</p>
                 <p className="text-2xl font-bold text-white">
-                  {formatTime(timeRemaining)}
+                  {hasStarted ?`${formatTime(timeRemaining)}` : `${competitionDetails.startTime} AM`}
                 </p>
               </div>
             </div>

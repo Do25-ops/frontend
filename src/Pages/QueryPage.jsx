@@ -110,17 +110,16 @@ Kindly note the differences in schema for Oracle:
   
   
 
-  const levelChanger = ({ email, level }) => {
-    if (email == user.email && level <=8) {
-      setUser((prev) => ({ ...prev, level: level }));
-      zoomToLevel(2.5, levels[level - 1].x, levels[level - 1].y);
+  const levelChanger = (email,new_level) => {
+    if (email == user.email && new_level <=8) {
+      setUser((prev) => ({ ...prev, level: new_level }));
+      zoomToLevel(2.5, levels[new_level - 1].x, levels[new_level - 1].y);
     }else {
       setShowPopup(true);
    }
   };
 
   useEffect(() => {
-    if (socket) socket.on("levelUpdated", levelChanger);
     if (user) setDemo(user.firstLogin);
   }, []);
 
@@ -845,6 +844,7 @@ Can you master the **Grand Line of Joins** and claim victory?
             setError(null);
             setCanSubmit(true);
           }}
+          levelChanger={levelChanger}
         />
       )}
 
