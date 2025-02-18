@@ -6,14 +6,19 @@ import axios from 'axios';
 const SubmissionWindow = ({ query,dialect, toggleWindow,toggledSelected, setCanSubmit }) => {
 
   const [status,setStatus] = useState('submitting');
-  const {user} = useUserContext();
+  const {user,setUser} = useUserContext();
 
   const statusChanger = (queryStatus) => {
     if (!queryStatus) return;
   
     if (queryStatus.email === user.email && queryStatus.status !== status) {
       setStatus(queryStatus.status);
-      
+      if(queryStatus.level !== user.level){
+        setUser((prev) => ({
+          ...prev,
+          level : queryStatus.level,
+      }));
+      }
       if (queryStatus.status === "accepted") {
         toggledSelected();
       } else if (queryStatus.status === "rejected") {
