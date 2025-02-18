@@ -138,7 +138,7 @@ Kindly note the differences in schema for Oracle:
        } 
     }
     catch(err){
-        con
+        
     }
   }
   
