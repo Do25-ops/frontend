@@ -76,10 +76,13 @@ const App = () => {
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/check-session`, { withCredentials: true })
       .then(response => {
-        setUser(prev => ({
-          ...response.data,
+        if(response.data.restore){
+          setUser(prev => ({
+          ...response.data.userData,
           loggedIn: true,
         }));
+        }
+  
       })
       .catch(err => {
       });
