@@ -416,7 +416,7 @@ Kindly note the differences in schema for Oracle:
   
       
       setResult(parsedRes);
-      if (type === "test"){
+      if (type === "test" || error || testRes.data.stderr){
         setCanSubmit(true);
         return;
       }
