@@ -127,7 +127,7 @@ Kindly note the differences in schema for Oracle:
   
   const fetchLevel = async() =>{
     try{
-       const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/checkLevel/${user.team_id}`
+       const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/fetchTeamLevel/${user.team_id}`
         ,{
           withCredentials: true,
           headers: { "Content-Type": "application/json" },
@@ -138,7 +138,7 @@ Kindly note the differences in schema for Oracle:
        } 
     }
     catch(err){
-
+        con
     }
   }
   
