@@ -221,7 +221,7 @@ const LeaderBoard = () => {
                             textColor = "text-white font-semibold";
                             displayText =
                               levelNumber === team.lastLevelPassed
-                                ? team.lastPassedTime
+                                ? new Date(team.lastPassedTime).toLocaleString("en-US", { timeZone: "America/New_York" })
                                 : "🚀";
                           } else if (levelStatus === "Attempting") {
                             textColor = "text-black font-semibold";
