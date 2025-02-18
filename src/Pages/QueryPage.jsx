@@ -109,8 +109,9 @@ Kindly note the differences in schema for Oracle:
   }, [selectedDialect]);
   
   
-
+  
   const levelChanger = (email,new_level) => {
+    console.log('Changing levell? ',email ,' ',new_level);
     if (email == user.email && new_level <=8) {
       setUser((prev) => ({ ...prev, level: new_level }));
       zoomToLevel(2.5, levels[new_level - 1].x, levels[new_level - 1].y);
@@ -401,7 +402,6 @@ Kindly note the differences in schema for Oracle:
       else   setError('Oracle Query executed without any errors');
 
       }
-      console.log(testRes.data);
       
       if (testRes.data.stdout === null) {
         setError("SQL query successfully executed. However, the result set is empty.");
@@ -420,7 +420,6 @@ Kindly note the differences in schema for Oracle:
         setCanSubmit(true);
         return;
       }
-      console.log('sending request for selected query ',selectedQuery);
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/submitFile`,
         JSON.stringify({
@@ -491,7 +490,7 @@ Kindly note the differences in schema for Oracle:
       fetchQueries();
       setLoading(false);
     }
-  }, [user, user.loggedIn,user.level]);
+  }, [user, user.loggedIn]);
   
 
   return (
