@@ -5,13 +5,13 @@ import { useUserContext } from "../Contexts/userContext"
 
 
 const levels = [
-    { number: 1, x: -0.13, y: -0.21 },
-    { number: 2, x: -0.195, y: -0.12 },
-    { number: 3, x: -0.195, y: 0.155 },
-    { number: 4, x: -0.200, y: 0.26 },
-    { number: 5, x: -0.115, y: 0.24 },
-    { number: 6, x: 0.115, y: 0.24 },
-    { number: 7, x: 0.042, y: -0.155 },
+    { number: 1, x: -0.12, y: -0.2 },
+    { number: 2, x: -0.185, y: -0.11 },
+    { number: 3, x: -0.185, y: 0.155 },
+    { number: 4, x: -0.186, y: 0.26 },
+    { number: 5, x: -0.105, y: 0.24 },
+    { number: 6, x: 0.107, y: 0.24 },
+    { number: 7, x: 0.039, y: -0.155 },
     { number: 8, x: -0.012, y: -0.018 },
 ]
 const Demo = ({ setDemo }) => {

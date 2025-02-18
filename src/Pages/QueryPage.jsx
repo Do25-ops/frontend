@@ -110,20 +110,24 @@ Kindly note the differences in schema for Oracle:
   }, [selectedDialect]);
   
   
+ 
+
+  useEffect(() => {
+    if (user) setDemo(user.firstLogin);
+  }, []);
   
+
+ 
   const levelChanger = (email,new_level) => {
     console.log('Changing levell? ',email ,' ',new_level);
     if (email == user.email && new_level <=8) {
       setUser((prev) => ({ ...prev, level: new_level }));
       zoomToLevel(2.5, levels[new_level - 1].x, levels[new_level - 1].y);
+      fetchQueries();
     }else {
       setShowPopup(true);
    }
   };
-
-  useEffect(() => {
-    if (user) setDemo(user.firstLogin);
-  }, []);
   
   const fetchLevel = async() =>{
     try{
@@ -134,7 +138,7 @@ Kindly note the differences in schema for Oracle:
         }
        );
        if(response.level !== user.level){
-          levelChanger(user.email,response.level);
+          levelChanger(user.email,response.data.level);
        } 
     }
     catch(err){

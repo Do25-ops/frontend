@@ -9,7 +9,11 @@ const Dashboard = ({onClose}) => {
 
   const fetchSubmissions = async (e) => {
       try{
-         const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getMyDashboard/${user.team_id}`);
+         const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getMyDashboard/${user.team_id}`,
+          {
+            withCredentials : true
+          }
+         );
          setSubmissions(response.data);
       }
       catch(err){   console.log(err);

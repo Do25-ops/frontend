@@ -31,6 +31,9 @@ const SubmissionWindow = ({ query,dialect, toggleWindow,toggledSelected, setCanS
       const response = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/api/getSubmissionStatus`,
         {
+          withCredentials : true
+        },
+        {
           params: { team_id: user.team_id, query: query }, 
         }
       );
