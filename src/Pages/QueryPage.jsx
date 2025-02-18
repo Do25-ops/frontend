@@ -36,6 +36,7 @@ const OraclePopup = ({ message, onClose }) => {
 const QueryPage = () => {
   const [isLoading,setLoading] = useState(true);
   const [selectedDialect, setSelectedDialect] = useState("mysql");
+  const [queryAccepted,setAccepted] = useState(false);
   const [competitionDetails, setCompetitionDetails] = useState({
           competitionName: "",
           competitionDate: "",
@@ -123,6 +124,19 @@ Kindly note the differences in schema for Oracle:
   useEffect(() => {
     if (user) setDemo(user.firstLogin);
   }, []);
+  
+  const fetchLevel = async() =>{
+    try{
+       const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/checkLevel/${user.team_id}`);
+       if(response.level !== user.level){
+          levelChanger(user.email,response.level);
+       } 
+    }
+    catch(err){
+
+    }
+  }
+  
 
   const fetchQueries = async (e) => {
     axios
@@ -138,7 +152,7 @@ Kindly note the differences in schema for Oracle:
       .catch((err) => {
       });
   };
-
+  
   function parseTableString(tableString) {
     if (!tableString) {
       return [];
@@ -481,7 +495,7 @@ Kindly note the differences in schema for Oracle:
     const currLevel = levels[user.level - 1];
     zoomToLevel(2.5, currLevel.x, currLevel.y);
   }, []);
-
+  
   useEffect(() => {
     if (user && !user.loggedIn) navigate("/");
     else if(!user) setLoading(true);
@@ -842,8 +856,8 @@ Can you master the **Grand Line of Joins** and claim victory?
             setResult("");
             setError(null);
             setCanSubmit(true);
+            fetchLevel()
           }}
-          levelChanger={levelChanger}
         />
       )}
 

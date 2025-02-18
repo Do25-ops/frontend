@@ -3,7 +3,7 @@ import { FiClock, FiFileText, FiFlag, FiAlertCircle } from 'react-icons/fi';
 import { useUserContext } from '../Contexts/userContext';
 import axios from 'axios';
 
-const SubmissionWindow = ({ query,dialect, toggleWindow,toggledSelected, setCanSubmit,levelChanger }) => {
+const SubmissionWindow = ({ query,dialect, toggleWindow,toggledSelected, setCanSubmit }) => {
 
   const [status,setStatus] = useState('submitting');
   const {user,setUser} = useUserContext();
@@ -13,11 +13,11 @@ const SubmissionWindow = ({ query,dialect, toggleWindow,toggledSelected, setCanS
   
     if (queryStatus.email === user.email && queryStatus.status !== status) {
       setStatus(queryStatus.status);
-      console.log('checking levelss ',queryStatus.level,user.level);
-      if(queryStatus.level !== user.level){
-        console.log('Calling change level ');
-        levelChanger(user.email,queryStatus.level);
-      }
+      // console.log('checking levelss ',queryStatus.level,user.level);
+      // if(queryStatus.level !== user.level){
+      //   console.log('Calling change level ');
+      //   levelChanger(user.email,queryStatus.level);
+      // }
       if (queryStatus.status === "accepted") {
         toggledSelected();
       } else if (queryStatus.status === "rejected") {
