@@ -156,7 +156,7 @@ Kindly note the differences in schema for Oracle:
       })
       .then((res) => {
         setQueries(res.data.queries);
-        console.log('Query responses' ,res.data.queries);
+        // console.log('Query responses' ,res.data.queries);
         //  setSelectedQuery(res.data.queries[0]);
       })
       .catch((err) => {

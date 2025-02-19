@@ -41,7 +41,7 @@ const LeaderBoard = () => {
         const currentTime = new Date().getTime();
 
         const remainingSeconds = Math.max((endTime - currentTime) / 1000, 0);
-
+        console.log(data.startTime)
         setCompetitionDetails({
           ...data,
           competitionDate: `${competitionDate}T${data.startTime}`,
@@ -139,7 +139,9 @@ const LeaderBoard = () => {
               <div>
                 <p className="text-gray-400">{hasStarted ? "Time Remaining" : "Competition Starts At "}</p>
                 <p className="text-2xl font-bold text-white">
-                  {hasStarted ?`${formatTime(timeRemaining)}` : `${competitionDetails.startTime} AM`}
+                {hasStarted 
+  ? `${formatTime(timeRemaining)}` 
+  : `${competitionDetails.startTime.slice(0, 5)} AM`}
                 </p>
               </div>
             </div>
