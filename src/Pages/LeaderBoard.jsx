@@ -229,7 +229,7 @@ const LeaderBoard = () => {
                               hour12: false 
                             });
                           
-                            displayText = levelNumber === team.lastLevelPassed ? localTime : "🚀";
+                            displayText = "🚀";
                           }
                            else if (levelStatus === "Attempting") {
                             textColor = "text-black font-semibold";
