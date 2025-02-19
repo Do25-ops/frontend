@@ -22,7 +22,8 @@ const Login = () => {
     if(user.level > 8) {
       setShowPopup(true);
     }
-    else if(user.loggedIn) navigate("/upcomingCompetition");
+    else if(user.loggedIn) navigate("/competition");
+    // if(user.loggedIn) navigate("/upcomingCompetition");
   },[user,user.loggedIn])
 
   const handleSubmit = async (e) => {
