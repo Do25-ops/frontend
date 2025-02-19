@@ -71,24 +71,24 @@ const QueryPage = () => {
 },[]);
 
 
-useEffect(() => {
-  if (!competitionDetails.endTime || !competitionDetails.competitionDate) return;
+// useEffect(() => {
+//   if (!competitionDetails.endTime || !competitionDetails.competitionDate) return;
 
-  const checkTime = () => {
-      const now = new Date();
-      const competitionEnd = new Date(`${competitionDetails.competitionDate}T${competitionDetails.endTime}`);
+//   const checkTime = () => {
+//       const now = new Date();
+//       const competitionEnd = new Date(`${competitionDetails.competitionDate}T${competitionDetails.endTime}`);
 
-      if (now >= competitionEnd) {
-        if(user.loggedIn) logUserOut();
-          navigate("/end-page"); 
-      }
-  };
+//       if (now >= competitionEnd) {
+//         if(user.loggedIn) logUserOut();
+//           navigate("/end-page"); 
+//       }
+//   };
 
-  checkTime(); 
-  const interval = setInterval(checkTime, 1000 * 60); 
+//   checkTime(); 
+//   const interval = setInterval(checkTime, 1000 * 60); 
 
-  return () => clearInterval(interval);
-}, [competitionDetails, navigate]);
+//   return () => clearInterval(interval);
+// }, [competitionDetails, navigate]);
 
   useEffect(() => {
     if (selectedDialect === "oracle") {

@@ -134,14 +134,14 @@ const LeaderBoard = () => {
             </div>
           </div>
           <div className="bg-gray-900 rounded-xl p-6 border border-gray-800">
+            
             <div className="flex items-center gap-4">
               <FiClock className="text-red-500 text-3xl" />
               <div>
                 <p className="text-gray-400">{hasStarted ? "Time Remaining" : "Competition Starts At "}</p>
                 <p className="text-2xl font-bold text-white">
                 {hasStarted 
-  ? `${formatTime(timeRemaining)}` 
-  : `${competitionDetails.startTime.slice(0, 5)} AM`}
+  ?`${competitionDetails.startTime.slice(0, 5)} AM` : 'In progress'}
                 </p>
               </div>
             </div>
